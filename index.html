@@ -1,138 +1,395 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Ashlyn Ramesh | Portfolio</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #f8f8f8;
-      color: #333;
-      line-height: 1.6;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ashlyn Ramesh — AI & Healthcare Engineering</title>
+<meta name="description" content="Ashlyn Ramesh — final-year Computer Science and Medical Engineering student working on AI, medical imaging and healthcare data.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0d1117; --ink-2:#151b24; --paper:#ffffff; --muted:#5b6472;
+    --line:#e6e9ee; --accent:#0d9488; --accent-soft:#e6f5f3; --tint:#f7f9fb;
+    --sans:"Inter",system-ui,-apple-system,sans-serif;
+    --display:"Space Grotesk",var(--sans);
+    --wrap:1080px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;scroll-padding-top:80px}
+  body{margin:0;font-family:var(--sans);color:var(--ink);background:var(--paper);line-height:1.65;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,h4{font-family:var(--display);line-height:1.15;margin:0;letter-spacing:-.02em}
+  p{margin:0 0 1rem}
+  a{color:inherit}
+  img{max-width:100%;display:block}
+  .wrap{width:min(var(--wrap),92vw);margin-inline:auto}
 
-    header {
-      background: #000;
-      color: #fff;
-      padding: 2rem;
-      text-align: center;
-    }
+  /* ---------- hero ---------- */
+  .hero{background:radial-gradient(1200px 600px at 80% -10%,#17313a 0%,var(--ink) 55%);color:#eef2f4;padding:clamp(3rem,7vw,5.5rem) 0 clamp(3.5rem,7vw,6rem);position:relative;overflow:hidden}
+  .hero::after{content:"";position:absolute;inset:auto -10% -60% 40%;height:520px;
+    background:radial-gradient(closest-side,rgba(13,148,136,.35),transparent);pointer-events:none}
+  .hero-top{display:flex;justify-content:space-between;align-items:center;gap:1rem;margin-bottom:clamp(2.5rem,6vw,4rem)}
+  .monogram{display:grid;place-items:center;width:46px;height:46px;border-radius:12px;
+    background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);
+    font-family:var(--display);font-weight:700;letter-spacing:.02em;font-size:1rem}
+  .hero-links{display:flex;gap:.6rem;flex-wrap:wrap;font-size:.85rem}
+  .hero-links a{color:#c8d3da;text-decoration:none;border:1px solid rgba(255,255,255,.18);
+    padding:.45rem .85rem;border-radius:999px;transition:.2s}
+  .hero-links a:hover{background:rgba(255,255,255,.1);color:#fff}
+  .eyebrow{display:inline-flex;align-items:center;gap:.55rem;font-size:.74rem;letter-spacing:.2em;
+    text-transform:uppercase;color:#7dd3c8;font-weight:600;margin-bottom:1.4rem}
+  .eyebrow::before{content:"";width:26px;height:1px;background:currentColor;opacity:.7}
+  h1{font-size:clamp(2.6rem,7vw,4.6rem);font-weight:700;color:#fff}
+  h1 .thin{color:#8b9aa6;font-weight:400}
+  .hero-role{font-size:clamp(1.02rem,2vw,1.2rem);color:#a9b8c2;max-width:60ch;margin-top:1.4rem}
+  .hero-meta{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.8rem}
+  .tag{font-size:.78rem;letter-spacing:.04em;color:#cfe3e0;background:rgba(13,148,136,.18);
+    border:1px solid rgba(13,148,136,.45);padding:.35rem .75rem;border-radius:999px}
 
-    header h1 {
-      margin: 0;
-      font-size: 2.5rem;
-    }
+  /* ---------- nav ---------- */
+  .subnav{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.9);backdrop-filter:blur(12px);
+    border-bottom:1px solid transparent;transition:border-color .3s,box-shadow .3s}
+  .subnav.stuck{border-bottom-color:var(--line);box-shadow:0 6px 24px rgba(13,17,23,.05)}
+  .subnav-inner{display:flex;align-items:center;justify-content:space-between;gap:1rem;min-height:62px}
+  .subnav .brand{font-family:var(--display);font-weight:600;font-size:.95rem;text-decoration:none}
+  .subnav nav ul{display:flex;gap:1.5rem;list-style:none;margin:0;padding:0}
+  .subnav nav a{font-size:.87rem;font-weight:500;color:var(--muted);text-decoration:none;padding-bottom:3px;border-bottom:1.5px solid transparent;transition:.2s}
+  .subnav nav a:hover{color:var(--ink);border-bottom-color:var(--accent)}
+  .subnav .resume-btn{font-size:.82rem;font-weight:600;text-decoration:none;color:#fff;background:var(--ink);
+    padding:.5rem 1rem;border-radius:999px}
 
-    .contact a {
-      color: #ccc;
-      text-decoration: none;
-      margin: 0 8px;
-    }
+  /* ---------- sections ---------- */
+  section{padding:clamp(3.2rem,6vw,5rem) 0}
+  .sec-head{margin-bottom:2.6rem;max-width:52ch}
+  .sec-label{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:.7rem}
+  h2{font-size:clamp(1.7rem,3.4vw,2.35rem);font-weight:600}
+  .tint{background:var(--tint);border-block:1px solid var(--line)}
+  .lead{font-size:1.05rem;color:var(--muted);max-width:68ch}
 
-    section {
-      padding: 2rem;
-      max-width: 900px;
-      margin: 1rem auto;
-      background: #fff;
-      border-radius: 8px;
-      box-shadow: 0 0 8px rgba(0,0,0,0.05);
-    }
+  .about-grid{display:grid;grid-template-columns:1.35fr .65fr;gap:clamp(1.5rem,4vw,3.5rem);align-items:start}
+  .fact-card{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:1.5rem}
+  .tint .fact-card{background:#fff}
+  .fact-card dl{margin:0;display:grid;gap:1rem}
+  .fact-card dt{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:.2rem}
+  .fact-card dd{margin:0;font-size:.95rem;font-weight:500}
 
-    h2 {
-      border-bottom: 2px solid #eee;
-      padding-bottom: 0.5rem;
-      margin-bottom: 1rem;
-    }
+  /* education */
+  .edu-card{border:1px solid var(--line);border-radius:16px;padding:1.8rem;background:#fff;display:grid;gap:.4rem}
+  .edu-card .school{font-weight:600}
+  .edu-card .meta{font-size:.9rem;color:var(--muted)}
+  .cgpa{display:inline-flex;align-items:baseline;gap:.4rem;margin-top:.7rem;font-family:var(--display);font-weight:600}
+  .cgpa span{font-family:var(--sans);font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}
 
-    ul {
-      padding-left: 1.2rem;
-    }
+  /* skills */
+  .skill-groups{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+  .skill-group{border:1px solid var(--line);border-radius:16px;padding:1.5rem;background:#fff}
+  .skill-group h3{font-size:.95rem;font-weight:600;margin-bottom:1rem}
+  .chips{display:flex;flex-wrap:wrap;gap:.45rem;padding:0;margin:0;list-style:none}
+  .chips li{font-size:.82rem;background:var(--accent-soft);color:#0f5f59;border:1px solid #cbe9e5;
+    padding:.3rem .65rem;border-radius:8px;font-weight:500}
 
-    footer {
-      text-align: center;
-      padding: 1rem;
-      font-size: 0.9rem;
-      background: #000;
-      color: #fff;
-      margin-top: 2rem;
-    }
-  </style>
+  /* experience */
+  .timeline{list-style:none;margin:0;padding:0;position:relative}
+  .timeline::before{content:"";position:absolute;left:7px;top:8px;bottom:8px;width:2px;background:var(--line)}
+  .timeline li{position:relative;padding:0 0 2.2rem 2.4rem}
+  .timeline li:last-child{padding-bottom:0}
+  .timeline li::before{content:"";position:absolute;left:0;top:.45rem;width:16px;height:16px;border-radius:50%;
+    background:#fff;border:2px solid var(--accent)}
+  .job-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:.6rem;justify-content:space-between}
+  .job-head h3{font-size:1.06rem;font-weight:600}
+  .when{font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600;white-space:nowrap}
+  .org{font-size:.9rem;color:var(--accent);font-weight:600;margin:.15rem 0 .5rem}
+  .timeline p{color:var(--muted);margin:0;max-width:66ch;font-size:.97rem}
+
+  /* projects */
+  .projects{display:grid;grid-template-columns:repeat(2,1fr);gap:1.2rem}
+  .project{border:1px solid var(--line);border-radius:16px;padding:1.5rem;background:#fff;transition:.25s}
+  .tint .project{background:#fff}
+  .project:hover{transform:translateY(-3px);box-shadow:0 18px 34px rgba(13,17,23,.07);border-color:#cfe0e6}
+  .project h3{font-size:1rem;font-weight:600;margin-bottom:.45rem}
+  .project p{font-size:.92rem;color:var(--muted);margin:0}
+  .project .stack{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:1rem}
+  .project .stack span{font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:#0f5f59;
+    background:var(--accent-soft);border-radius:6px;padding:.22rem .5rem;font-weight:600}
+
+  /* languages */
+  .langs{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:.5rem}
+  .lang{border:1px solid var(--line);border-radius:14px;padding:1.2rem 1.3rem;background:#fff}
+  .lang strong{display:block;font-family:var(--display);font-size:1rem}
+  .lang span{font-size:.82rem;color:var(--muted)}
+  .lang .lvl{display:inline-block;margin-top:.55rem;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--accent);border:1px solid #cbe9e5;background:var(--accent-soft);padding:.18rem .5rem;border-radius:999px;font-weight:700}
+
+  /* contact */
+  .contact{background:var(--ink);color:#eef2f4;padding:clamp(3.5rem,7vw,5.5rem) 0}
+  .contact h2{color:#fff;margin-bottom:.8rem}
+  .contact p{color:#a9b8c2;max-width:56ch}
+  .contact-actions{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:2rem}
+  .contact-actions a{text-decoration:none;font-size:.9rem;font-weight:600;padding:.8rem 1.35rem;border-radius:999px;transition:.2s}
+  .btn-solid{background:#14b8a6;color:#062a27}
+  .btn-solid:hover{background:#2dd4bf}
+  .btn-line{border:1px solid rgba(255,255,255,.25);color:#e6eef1}
+  .btn-line:hover{border-color:#14b8a6;color:#fff}
+  footer{background:#070a0e;color:#7f8b96;font-size:.82rem;padding:1.6rem 0}
+  footer .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+  footer a{color:#9aa7b2;text-decoration:none}
+
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  @media(max-width:900px){
+    .about-grid,.skill-groups,.projects,.langs{grid-template-columns:1fr}
+    .subnav nav{display:none}
+  }
+  @media(max-width:620px){
+    .hero-links a{padding:.4rem .7rem;font-size:.8rem}
+    .job-head{flex-direction:column;gap:.2rem}
+  }
+  @media(prefers-reduced-motion:reduce){
+    .reveal{opacity:1;transform:none;transition:none}
+    html{scroll-behavior:auto}
+  }
+</style>
 </head>
 <body>
-  <header>
-    <h1>Ashlyn Ramesh</h1>
-    <p>Computer Science and Medical Engineering | AI & Healthcare Enthusiast</p>
-    <div class="contact">
-      <a href="mailto:ashlynramesh@gmail.com">ashlynramesh@gmail.com</a> |
-      <a href="tel:+919841990735">+91 98419 90735</a> |
-      <a href="https://www.linkedin.com/in/Ashlynr" target="_blank">LinkedIn</a> |
-      <a href="https://github.com/AshlynR" target="_blank">GitHub</a>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-top">
+      <div class="monogram">AR</div>
+      <div class="hero-links">
+        <a href="mailto:ashlynramesh@gmail.com">Email</a>
+        <a href="tel:+919841990735">+91 98419 90735</a>
+        <a href="https://www.linkedin.com/in/Ashlynr" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/AshlynR" target="_blank" rel="noopener">GitHub</a>
+      </div>
     </div>
-  </header>
 
-  <section class="summary">
-    <h2>About Me</h2>
-    <p>Final-year Computer Science and Medical Engineering student with strong interest in AI, data analytics, and healthcare applications. Known for being adaptable, quick to learn, and detail-oriented. I enjoy bridging technical knowledge with real-world impact.</p>
-  </section>
-
-  <section class="education">
-    <h2>Education</h2>
-    <p><strong>B.Tech in Computer Science and Medical Engineering</strong><br/>
-    Sri Ramachandra Faculty of Engineering and Technology (2022 - 2026)<br/>
-    CGPA: 7.71</p>
-  </section>
-
-  <section class="skills">
-    <h2>Skills</h2>
-    <ul>
-      <li>Python, C/C++, JavaScript, SQL</li>
-      <li>Data Structures and Algorithms</li>
-      <li>Team Collaboration, Adaptability</li>
-      <li>Creativity, Organization, Multitasking</li>
-    </ul>
-  </section>
-
-  <section class="experience">
-    <h2>Experience</h2>
-    <div>
-      <h3>Neurobiomarker for Migraine (Internship)</h3>
-      <p>Worked with a neurologist to analyze fMRI/PET scans using PCA, clustering (K-Means), and classification models (SVM, RF, GBM).</p>
+    <span class="eyebrow">Portfolio · 2026</span>
+    <h1>Ashlyn Ramesh<br><span class="thin">AI &amp; healthcare engineering</span></h1>
+    <p class="hero-role">Final-year Computer Science and Medical Engineering student with strong interest in AI,
+      data analytics and healthcare applications. I like bridging technical knowledge with real-world impact.</p>
+    <div class="hero-meta">
+      <span class="tag">Medical imaging</span>
+      <span class="tag">Machine learning</span>
+      <span class="tag">Data analytics</span>
+      <span class="tag">Web development</span>
     </div>
-    <div>
-      <h3>Intern - Kauvery Hospital (08/2024 - 10/2024)</h3>
-      <p>Built and tuned a ResNet-50 model for real-time X-ray classification using PyTorch. Focused on preprocessing, triage, and collaboration.</p>
+  </div>
+</header>
+
+<div class="subnav" id="subnav">
+  <div class="wrap subnav-inner">
+    <a class="brand" href="#top">Ashlyn Ramesh</a>
+    <nav aria-label="Section navigation">
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#projects">Projects</a></li>
+      </ul>
+    </nav>
+    <a class="resume-btn" href="mailto:ashlynramesh@gmail.com">Get in touch</a>
+  </div>
+</div>
+
+<main id="top">
+
+  <section id="about">
+    <div class="wrap about-grid">
+      <div class="reveal">
+        <div class="sec-label">About</div>
+        <h2>Detail-oriented, adaptable, and drawn to problems that matter.</h2>
+        <p class="lead">I am in my final year of a B.Tech in Computer Science and Medical Engineering at Sri Ramachandra
+          Faculty of Engineering and Technology. My work so far sits where imaging, machine learning and medicine meet —
+          from a ResNet-50 model for real-time X-ray triage to fMRI/PET analysis for migraine research.</p>
+        <p class="lead">Alongside that I build for the web: I have shipped front-end work for a skincare brand and keep
+          several JavaScript and data projects on GitHub.</p>
+      </div>
+      <aside class="fact-card reveal">
+        <dl>
+          <div><dt>Currently</dt><dd>Final year, B.Tech CS &amp; Medical Engineering</dd></div>
+          <div><dt>CGPA</dt><dd>7.71</dd></div>
+          <div><dt>Focus</dt><dd>AI for healthcare, data analytics, front-end</dd></div>
+          <div><dt>Languages</dt><dd>English, Tamil, French</dd></div>
+        </dl>
+      </aside>
     </div>
-    <div>
-      <h3>Web Dev Intern - SRFET (05/2023 - 07/2023)</h3>
-      <p>Revamped skincare brand website using HTML, CSS, JavaScript, Bootstrap. Improved layout and customer experience.</p>
+  </section>
+
+  <section id="education" class="tint">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="sec-label">Education</div>
+        <h2>Academic background</h2>
+      </div>
+      <div class="edu-card reveal">
+        <h3>B.Tech — Computer Science and Medical Engineering</h3>
+        <p class="school">Sri Ramachandra Faculty of Engineering and Technology</p>
+        <p class="meta">2022 – 2026</p>
+        <div class="cgpa">7.71 <span>CGPA</span></div>
+      </div>
     </div>
   </section>
 
-  <section class="projects">
-    <h2>Projects</h2>
-    <ul>
-      <li><strong>Liver Tumor Segmentation:</strong> U-Net model for CT image segmentation using Dice Coefficient & augmentation.</li>
-      <li><strong>Bone Fracture Detection:</strong> MATLAB image processing pipeline for fracture identification in X-rays.</li>
-      <li><strong>Brain and Lung Tumor Segmentation:</strong> MATLAB-based segmentation using morphological filters.</li>
-      <li><strong>Handwritten Digit Recognition:</strong> CNN trained and deployed via Gradio, Colab, and Ngrok.</li>
-      <li><strong>Image Annotation:</strong> Annotated biomedical datasets using VIA tool for segmentation training.</li>
-    </ul>
+  <section id="skills">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="sec-label">Skills</div>
+        <h2>What I work with</h2>
+      </div>
+      <div class="skill-groups">
+        <div class="skill-group reveal">
+          <h3>Programming</h3>
+          <ul class="chips">
+            <li>Python</li><li>C</li><li>C++</li><li>JavaScript</li><li>SQL</li>
+          </ul>
+        </div>
+        <div class="skill-group reveal">
+          <h3>Foundations</h3>
+          <ul class="chips">
+            <li>Data structures &amp; algorithms</li><li>Machine learning</li><li>Image processing</li>
+          </ul>
+        </div>
+        <div class="skill-group reveal">
+          <h3>Working style</h3>
+          <ul class="chips">
+            <li>Team collaboration</li><li>Adaptability</li><li>Creativity</li>
+            <li>Organisation</li><li>Multitasking</li>
+          </ul>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <section class="languages">
-    <h2>Languages</h2>
-    <ul>
-      <li>English (C2) - Bilingual</li>
-      <li>Tamil (C2) - Bilingual</li>
-      <li>French (A2) - Elementary Proficiency</li>
-    </ul>
+  <section id="experience" class="tint">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="sec-label">Experience</div>
+        <h2>Internships &amp; research</h2>
+      </div>
+      <ol class="timeline">
+        <li class="reveal">
+          <div class="job-head">
+            <h3>Neurobiomarker for Migraine</h3>
+            <span class="when">Research internship</span>
+          </div>
+          <p class="org">Neurology collaboration</p>
+          <p>Worked with a neurologist to analyse fMRI and PET scans using PCA, K-Means clustering and classification
+            models (SVM, Random Forest, Gradient Boosting) to identify candidate biomarkers.</p>
+        </li>
+        <li class="reveal">
+          <div class="job-head">
+            <h3>Intern</h3>
+            <span class="when">08/2024 – 10/2024</span>
+          </div>
+          <p class="org">Kauvery Hospital</p>
+          <p>Built and tuned a ResNet-50 model for real-time X-ray classification in PyTorch, with a focus on image
+            preprocessing, triage support and collaboration with clinical staff.</p>
+        </li>
+        <li class="reveal">
+          <div class="job-head">
+            <h3>Web Development Intern</h3>
+            <span class="when">05/2023 – 07/2023</span>
+          </div>
+          <p class="org">SRFET</p>
+          <p>Revamped a skincare brand website using HTML, CSS, JavaScript and Bootstrap, improving page layout and
+            the customer browsing experience.</p>
+        </li>
+      </ol>
+    </div>
   </section>
 
-  <footer>
-    <p>© 2025 Ashlyn Ramesh. All rights reserved.</p>
-  </footer>
+  <section id="projects">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="sec-label">Projects</div>
+        <h2>Selected work</h2>
+      </div>
+      <div class="projects">
+        <article class="project reveal">
+          <h3>Liver tumour segmentation</h3>
+          <p>U-Net model for CT image segmentation, trained with augmentation and evaluated using the Dice coefficient.</p>
+          <div class="stack"><span>Deep learning</span><span>U-Net</span></div>
+        </article>
+        <article class="project reveal">
+          <h3>Bone fracture detection</h3>
+          <p>MATLAB image processing pipeline for identifying fractures in X-ray images.</p>
+          <div class="stack"><span>MATLAB</span><span>Image processing</span></div>
+        </article>
+        <article class="project reveal">
+          <h3>Brain &amp; lung tumour segmentation</h3>
+          <p>MATLAB-based segmentation using morphological filters to isolate regions of interest.</p>
+          <div class="stack"><span>MATLAB</span><span>Segmentation</span></div>
+        </article>
+        <article class="project reveal">
+          <h3>Handwritten digit recognition</h3>
+          <p>CNN trained and deployed as a live demo through Gradio, Colab and Ngrok.</p>
+          <div class="stack"><span>CNN</span><span>Python</span><span>Gradio</span></div>
+        </article>
+        <article class="project reveal">
+          <h3>Biomedical image annotation</h3>
+          <p>Annotated biomedical datasets in the VIA tool to build training data for segmentation models.</p>
+          <div class="stack"><span>Datasets</span><span>VIA</span></div>
+        </article>
+        <article class="project reveal">
+          <h3>Job portal &amp; web builds</h3>
+          <p>A MongoDB-based job portal with role-based features and dashboard analytics, plus JavaScript and data
+            coursework in my public GitHub repositories.</p>
+          <div class="stack"><span>MongoDB</span><span>JavaScript</span></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="languages" class="tint">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="sec-label">Languages</div>
+        <h2>Spoken languages</h2>
+      </div>
+      <div class="langs">
+        <div class="lang reveal"><strong>English</strong><span>Bilingual</span><div><span class="lvl">C2</span></div></div>
+        <div class="lang reveal"><strong>Tamil</strong><span>Bilingual</span><div><span class="lvl">C2</span></div></div>
+        <div class="lang reveal"><strong>French</strong><span>Elementary proficiency</span><div><span class="lvl">A2</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact">
+    <div class="wrap">
+      <div class="sec-label">Contact</div>
+      <h2>Let’s build something useful.</h2>
+      <p>Open to internships and entry-level roles in AI, healthcare data and front-end development.</p>
+      <div class="contact-actions">
+        <a class="btn-solid" href="mailto:ashlynramesh@gmail.com">ashlynramesh@gmail.com</a>
+        <a class="btn-line" href="tel:+919841990735">+91 98419 90735</a>
+        <a class="btn-line" href="https://www.linkedin.com/in/Ashlynr" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn-line" href="https://github.com/AshlynR" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Ashlyn Ramesh</span>
+    <a href="#top">Back to top ↑</a>
+  </div>
+</footer>
+
+<script>
+  const nav = document.getElementById('subnav');
+  const onScroll = () => nav.classList.toggle('stuck', window.scrollY > 40);
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  const io = new IntersectionObserver(entries => entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  }), { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
 </body>
 </html>
